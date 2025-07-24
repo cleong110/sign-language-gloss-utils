@@ -1,15 +1,15 @@
 [project]
 name = "sign-language-gloss-utils"
-description = "Automatic Evaluation for Pose Files"
+description = "Utilities for Glosses, e.g. transform 'House' to ASL-Citizen 'HOUSE' or 'light' to LIGHT_2"
 version = "0.0.1"
 authors = [
     { name = "Colin Leong", email = "cleong1@udayton.edu" },
 ]
 readme = "README.md"
 dependencies = [
-    "pose-format",
     "thefuzz", 
     "num2words",
+    "pandas",
 ]
 
 [project.optional-dependencies]
@@ -83,9 +83,9 @@ ignore = [
 
 # This tells Ruff about your project's top-level modules
 # so it can correctly group imports (e.g., your own code vs. third-party libs).
-# Make sure to add "pose_evaluation" here.
+# Make sure to add "sign_language_gloss_utils" here.
 [tool.ruff.lint.isort]
-known-first-party = ["pose_evaluation"]
+known-first-party = ["sign_language_gloss_utils"]
 # You can add other isort-specific configurations here if you had them previously, e.g.:
 # lines-after-imports = 2
 # force-single-line = false
@@ -100,16 +100,16 @@ known-first-party = ["pose_evaluation"]
 
 
 [tool.setuptools]
-packages = ["pose_evaluation", "pose_evaluation.metrics"]
+packages = ["sign_language_gloss_utils"]
 
 [tool.pytest.ini_options]
-addopts = "-v --cov=pose_evaluation --cov-report=term --cov-report=xml --cov-report=lcov --cov-report=html"
-testpaths = ["pose_evaluation"]
+addopts = "-v --cov=sign_language_gloss_utils --cov-report=term --cov-report=xml --cov-report=lcov --cov-report=html"
+testpaths = ["sign_language_gloss_utils"]
 
 [tool.coverage.run]
 omit = [
-  "pose_evaluation/*/test_*.py",
-  "pose_evaluation/*/conftest.py"
+  "sign_language_gloss_utils/*/test_*.py",
+  "sign_language_gloss_utils/*/conftest.py"
 ]
 
 

@@ -1,6 +1,8 @@
 # sign-language-gloss-utils
 Useful utilities to deal with glosses from, e.g. ASL Citizen, Sem-Lex, ASL-Lex, etc.
 
+# Colab Demo
+https://colab.research.google.com/drive/1vXSIN1TKHlb4u9Tp888_plzU2P3Fv4KU?usp=sharing
 
 # Usage
 ```
@@ -12,7 +14,12 @@ conda activate sign-language-gloss-utils
 python -m pip install -e .
 # python -m pip install -e .[dev] # to also install pytest, etc
 python -m spacy download en_core_web_sm
-
+from sign_language_gloss_utils.glosses.gloss_utils import get_dataset_vocab
+from sign_language_gloss_utils.glosses.text_utils import get_glosses_set_from_text
+asl_citizen_vocab = get_dataset_vocab("asl-citizen") # others TODO
+glosses = get_glosses_set_from_text("In the beginning God created the heavens and the earth.", asl_citizen_vocab)
+print(glosses)
+# {'AND', 'CREATE', 'EARTH', 'GOD', 'HEAVEN', 'IN'}
 ```
 
 

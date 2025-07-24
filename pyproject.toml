@@ -6,6 +6,11 @@ authors = [{ name = "Colin Leong", email = "cleong1@udayton.edu" }]
 readme = "README.md"
 dependencies = ["thefuzz", "num2words", "pandas", "spacy"]
 
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+
 [project.optional-dependencies]
 dev = ["pytest", "pytest-cov", "coverage-lcov", "ruff"]
 
@@ -86,8 +91,11 @@ known-first-party = ["sign_language_gloss_utils"]
 # docstring-code-line-length = "dynamic" # or an integer like 88
 
 
-[tool.setuptools]
-packages = ["sign_language_gloss_utils"]
+# [tool.setuptools]
+# packages = ["sign_language_gloss_utils"]
+[tool.setuptools.packages.find]
+where = ["."]
+
 
 [tool.pytest.ini_options]
 addopts = "-v --cov=sign_language_gloss_utils --cov-report=term --cov-report=xml --cov-report=lcov --cov-report=html"

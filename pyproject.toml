@@ -22,7 +22,6 @@ dev = [
 
 [tool.ruff]
 # The `line-length` argument is for both formatter and linter.
-# Set to 120 to match your previous Black/Pylint configuration.
 line-length = 120
 
 # Target Python version. Ruff will use this to enable/disable rules.

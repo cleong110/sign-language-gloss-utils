@@ -2,23 +2,12 @@
 name = "sign-language-gloss-utils"
 description = "Utilities for Glosses, e.g. transform 'House' to ASL-Citizen 'HOUSE' or 'light' to LIGHT_2"
 version = "0.0.1"
-authors = [
-    { name = "Colin Leong", email = "cleong1@udayton.edu" },
-]
+authors = [{ name = "Colin Leong", email = "cleong1@udayton.edu" }]
 readme = "README.md"
-dependencies = [
-    "thefuzz", 
-    "num2words",
-    "pandas",
-]
+dependencies = ["thefuzz", "num2words", "pandas", "spacy"]
 
 [project.optional-dependencies]
-dev = [
-    "pytest",
-    "pytest-cov",
-    "coverage-lcov",
-    "ruff"
-]
+dev = ["pytest", "pytest-cov", "coverage-lcov", "ruff"]
 
 [tool.ruff]
 # The `line-length` argument is for both formatter and linter.
@@ -28,30 +17,29 @@ line-length = 120
 # Adjust to your project's Python version (e.g., "py38", "py39", "py310", "py311")
 target-version = "py313" # Example: adjust this to your actual Python version
 
-[tool.ruff.lint] 
+[tool.ruff.lint]
 # List of linter rules to enable.
 # "I" is for isort-compatible import sorting.
 # "D" is for pydocstyle (docstring style). You might need to refine 'ignore'
 # or disable specific 'D' rules if they conflict with 'docformatter' or your style.
 # See [https://docs.astral.sh/ruff/rules/](https://docs.astral.sh/ruff/rules/) for a full list and descriptions.
 select = [
-    "E",   # Error
-    "F",   # Pyflakes
-    "I",   # isort (import sorting)
-    "W",   # Warning
-    "C",   # Complexity
-    "N",   # Naming conventions
-    "D",   # pydocstyle (docstring style)
-    "UP",  # pyupgrade
-    "B",   # Bugbear
-    "A",   # flake8-builtins
-    "T",   # flake8-bandit
-    "Q",   # flake8-quotes
+    "E",  # Error
+    "F",  # Pyflakes
+    "I",  # isort (import sorting)
+    "W",  # Warning
+    "C",  # Complexity
+    "N",  # Naming conventions
+    "D",  # pydocstyle (docstring style)
+    "UP", # pyupgrade
+    "B",  # Bugbear
+    "A",  # flake8-builtins
+    "T",  # flake8-bandit
+    "Q",  # flake8-quotes
     # "ANN", # flake8-annotations
     # "ERA", # eradicate (commented out code)
     "RUF", # Ruff specific rules
 ]
-
 
 
 # Set specific rule ignores or per-file ignores if needed.
@@ -66,18 +54,18 @@ ignore = [
     #"D107", # Missing docstring in `__init__`
     #"TD001", # TODO found (W0511 in Pylint - Ruff uses T for todo)
     #"G004", # Logging call uses f-string (W1203 in Pylint)
-    "D203", # If you prefer D211 (no blank line before class)
-    "D205", # 1 blank line required between summary line and description
-    "D212", # If you prefer D213 (summary on second line)
-    "D400", # First line should end with a period
-    "D401", # First line of docstring should be in imperative mood:
-    "D415", # First line should end with a period, question mark, or exclamation point
-    "D417", # Missing argument descriptions in the docstring
-    "T201", # `print` found
+    "D203",  # If you prefer D211 (no blank line before class)
+    "D205",  # 1 blank line required between summary line and description
+    "D212",  # If you prefer D213 (summary on second line)
+    "D400",  # First line should end with a period
+    "D401",  # First line of docstring should be in imperative mood:
+    "D415",  # First line should end with a period, question mark, or exclamation point
+    "D417",  # Missing argument descriptions in the docstring
+    "T201",  # `print` found
     "UP007", # Use `X | Y` for type annotations
-    "E501", # Line too long
-    "B008", # Do not perform function call `typer.Option` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
-    "C901", # `run_metrics_full_distance_matrix_batched_parallel` is too complex (12 > 10)
+    "E501",  # Line too long
+    "B008",  # Do not perform function call `typer.Option` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    "C901",  # `run_metrics_full_distance_matrix_batched_parallel` is too complex (12 > 10)
 ]
 
 # This tells Ruff about your project's top-level modules
@@ -107,8 +95,6 @@ testpaths = ["sign_language_gloss_utils"]
 
 [tool.coverage.run]
 omit = [
-  "sign_language_gloss_utils/*/test_*.py",
-  "sign_language_gloss_utils/*/conftest.py"
+    "sign_language_gloss_utils/*/test_*.py",
+    "sign_language_gloss_utils/*/conftest.py",
 ]
-
-

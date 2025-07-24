@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 
 from sign_language_gloss_utils.datasets import DatasetDFCol
-from sign_language_gloss_utils.datasets.asl_citizen.asl_citizen import ASLCitizenDatasetSplit
+from sign_language_gloss_utils.datasets.asl_citizen.asl_citizen import ASLCitizenDatasetVocab
 
 
 def save_aslcitizen_vocab(meta_path: Path, vocab_out: Path):
@@ -12,7 +12,7 @@ def save_aslcitizen_vocab(meta_path: Path, vocab_out: Path):
     print(f"Vocab output path: {vocab_out.resolve()}")
     # Add your logic here
 
-    split = ASLCitizenDatasetSplit(meta_path)
+    split = ASLCitizenDatasetVocab(meta_path)
     # dict of lists to Dataframe to CSV
     vocab_df = pd.DataFrame({DatasetDFCol.GLOSS: split.get_vocab()})
     vocab_df.to_csv(vocab_out, index=False)

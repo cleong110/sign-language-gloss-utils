@@ -3,8 +3,16 @@ import re
 from num2words import num2words
 from thefuzz import fuzz
 
+from sign_language_gloss_utils.datasets.asl_citizen.asl_citizen import ASLCitizenDatasetVocab
 
-# TODO: find best settings from pose_evaluation/analysis/gloss_matching_viewer.py
+
+def get_dataset_vocab(dataset_name):
+    if dataset_name == ASLCitizenDatasetVocab.DATASET_NAME:
+        return ASLCitizenDatasetVocab(None).get_vocab()
+    else:
+        raise NotImplementedError(f"get_dataset_vocab not implemented for {dataset_name}")
+
+
 def find_fuzzy_matches(input_gloss, target_glosses, threshold=60):
     fuzzy_matches = []
     for target_gloss in target_glosses:
@@ -52,6 +60,35 @@ def text_to_glosses(text: str, gloss_vocabulary: set, uppercase=True):
                 # print(word, asl_lex_word)
                 possible_matches.add(gloss)
     return possible_matches
+
+
+# TODO: find best settings from pose_evaluation/analysis/gloss_matching_viewer.py
+def find_fuzzy_matches(input_gloss, target_glosses, threshold=60):
+    fuzzy_matches = []
+    for target_gloss in target_glosses:
+        similarity = fuzz.ratio(input_gloss, target_gloss)
+        if similarity >= threshold:
+            fuzzy_matches.append((target_gloss, similarity))
+
+    # sort by similarity score
+    fuzzy_matches = sorted(fuzzy_matches, key=lambda x: x[1], reverse=True)
+    return fuzzy_matches
+
+
+def convert_digits_to_words(s: str) -> str:
+    # If the whole string is a digit, convert it
+    if s.isdigit():
+        return num2words(int(s)).upper()
+
+    # If string ends with a digit and has preceding non-digit characters, skip
+    if re.match(r"^.+\d$", s):
+        return s
+
+    # Replace digits within the string (not trailing ones with letters before) with words
+    def replace_match(match):
+        return num2words(int(match.group())).upper()
+
+    return re.sub(r"\d+", replace_match, s)
 
 
 def standardize_asllex_vocab(gloss: str) -> str:
@@ -155,8 +192,18 @@ def test_gloss_matching():
             "oh_I_see",  # yes, with the capital I, from ASL Lex 2.0
             "OHISEE",  # ASL Citizen
         ),
-        ("think_chin", "think chin", "think_chin.m4v", "THINKCHIN"),
-        ("release, rescue", "release,_rescue", "release,rescue", "RELEASERESCUE"),
+        (
+            "think_chin",  # semlex
+            "think chin",
+            "think_chin.m4v",  # ASLKG
+            "THINKCHIN",  # ASL Citizen
+        ),
+        (
+            "release, rescue",
+            "release,_rescue",
+            "release,rescue",
+            "RELEASE",  # ASL Citizen
+        ),  # E_03_059
         ("W.H.A.T", "w.h.a.t"),  # https://asl-lex.org/visualization/viewdata.html G_02_089
         ("ALL GONE", "ALLGONE"),
         # "don't_have_any", #ASLKG

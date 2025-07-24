@@ -1,15 +1,21 @@
-from abc import ABC
+"""Abstract class for Vocab class which parses vocab from dataset"""
+
+from abc import ABC, abstractmethod
+from pathlib import Path
 
 import pandas as pd
 
 
-class SignDataset(ABC):
+class SignDatasetVocab(ABC):
     DATASET_NAME = None
 
-    def __init__(self, meta_path):
+    @abstractmethod
+    def __init__(self, meta_path: Path | None):
         pass
 
-    def _load_metadata(self, meta_path) -> pd.DataFrame:
+    @abstractmethod
+    def _load_metadata(self, meta_path: Path) -> pd.DataFrame:
+        """Parses metadata to a dataframe with DatasetDF.GLOSS column"""
         pass
 
     def get_vocab(self) -> list[str]:
@@ -18,5 +24,6 @@ class SignDataset(ABC):
     def get_name(self) -> str:
         return self.DATASET_NAME
 
-    def get_table(self) -> pd.DataFrame:
+    @abstractmethod
+    def _get_table(self) -> pd.DataFrame:
         pass

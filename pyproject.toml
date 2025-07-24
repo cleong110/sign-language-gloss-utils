@@ -97,6 +97,10 @@ known-first-party = ["sign_language_gloss_utils"]
 where = ["."]
 
 
+[tool.setuptools.package-data]
+"sign_language_gloss_utils.datasets" = ["**/vocab.csv"]
+
+
 [tool.pytest.ini_options]
 addopts = "-v --cov=sign_language_gloss_utils --cov-report=term --cov-report=xml --cov-report=lcov --cov-report=html"
 testpaths = ["sign_language_gloss_utils"]

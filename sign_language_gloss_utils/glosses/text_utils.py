@@ -1,7 +1,9 @@
 import spacy
 
 
-def preprocess_text(text, spacy_pipeline: str | spacy.Language = "en_core_web_sm", uppercase=True) -> list[str]:
+def preprocess_text(
+    text, spacy_pipeline: str | spacy.Language = "en_core_web_sm", uppercase=True, remove_stopwords=False
+) -> list[str]:
     """Given a text, preprocess to lemmas"""
     # English pipelines include a rule-based lemmatizer
     if isinstance(spacy_pipeline, str):
@@ -10,7 +12,10 @@ def preprocess_text(text, spacy_pipeline: str | spacy.Language = "en_core_web_sm
         nlp = spacy_pipeline
     # not a set! We might want counts later
     doc = nlp(text)
+    if remove_stopwords:
+        doc = [token for token in doc if not token.is_stop]
     text_lemmas = [token.lemma_ for token in doc if token.is_alpha]
+
     if uppercase:
         text_lemmas = [l.upper() for l in text_lemmas]
     return text_lemmas
@@ -36,8 +41,8 @@ def preprocess_texts(
     return lemmas_for_all_texts
 
 
-def get_glosses_set_from_text(text: str, glosses: set[str]) -> set[str]:
-    text_lemmas = preprocess_text(text)
+def get_glosses_set_from_text(text: str, glosses: set[str], remove_stopwords=False) -> set[str]:
+    text_lemmas = preprocess_text(text, remove_stopwords=remove_stopwords)
     found_glosses = {l for l in text_lemmas if l in glosses}
     return found_glosses
 

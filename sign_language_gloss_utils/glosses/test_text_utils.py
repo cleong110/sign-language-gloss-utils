@@ -1,4 +1,8 @@
-from sign_language_gloss_utils.glosses.text_utils import get_glosses_set_from_text, preprocess_text
+from sign_language_gloss_utils.glosses.text_utils import (
+    get_glosses_set_from_text,
+    get_glosses_from_text,
+    preprocess_text,
+)
 
 
 def test_preprocess():
@@ -21,7 +25,30 @@ def test_preprocess_remove_stopwords():
         assert len(lemmas) == expected_len, f"stopword remove no work: {text}: {lemmas}"
 
 
-def test_get_glosses():
+def test_get_glosses_list():
+    # lifted from ASL Citizen manually
+    test_values = [
+        (
+            "In the beginning God created the heavens and the earth.",
+            ["IN", "THE", "BEGINNING", "GOD", "CREATE", "THE", "HEAVEN", "AND", "THE", "EARTH"],
+            ["BEGINNING", "GOD", "CREATE", "HEAVEN", "EARTH"],
+        ),
+        (
+            "And God said, “Let there be light,” and there was light.",
+            ["AND", "GOD", "THERE", "LIGHT", "AND", "THERE", "LIGHT"],
+            ["GOD", "LIGHT", "LIGHT"],
+        ),
+    ]
+
+    for text, expected_list, expected_list_without_stopwords in test_values:
+        retrieved_list = get_glosses_from_text(text, expected_list)
+
+        assert retrieved_list == expected_list
+        retrieved_list = get_glosses_from_text(text, expected_list, remove_stopwords=True)
+        assert retrieved_list == expected_list_without_stopwords
+
+
+def test_get_glosses_set():
     # lifted from ASL Citizen manually
     test_values = [
         (

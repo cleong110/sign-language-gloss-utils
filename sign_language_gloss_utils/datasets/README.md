@@ -17,7 +17,7 @@ Things to know about this dataset
 * It has at least 922 files which have duplicates. Found with rdfind. Also it's duplicated in the metadata.csv, sometimes across splits.
 * It has glosses with spaces (e.g. "last year")
 * It has glosses with commas in them ()
-* Some of the videos are poor quality and you cannot get the framerate reliably
+* Some of the videos are poor quality and you cannot get the framerate reliably, example at https://github.com/sign-language-processing/pose/issues/127.
 
 
 ## ASL Citizen: 

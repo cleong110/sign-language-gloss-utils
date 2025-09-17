@@ -7,6 +7,8 @@ Many Sign language datasets have compatible vocabularies for example many are in
 
 Many have non-alphanumeric characters, e.g. "$" or "#" 
 
+More examples [here.](https://github.com/cleong110/sign-language-gloss-utils/blob/be1552c311aebaa4123d89a65a1c90a417c6e0cf/sign_language_gloss_utils/glosses/gloss_utils.py#L94-L263)
+
 ## ASL LEX 2.0
 * There are some items with commas in the name, e.g. "release, rescue"
 

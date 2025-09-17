@@ -1,4 +1,4 @@
-# Things to Know about Different Datasets
+<img width="73" height="17" alt="image" src="https://github.com/user-attachments/assets/46c7f4e2-5832-4e51-8c0c-6cd2ef889df1" /># Things to Know about Different Datasets
 
 Many Sign language datasets have compatible vocabularies for example many are in some way aligned with the ASL LEX 2.0 vocabulary, but their gloss formatting are not consistent:
 * "asllex:#9_oclock" in the ASLKG versus "9_oclock" in Sem-Lex versus "9OCLOCK" in ASL Citizen
@@ -23,8 +23,12 @@ Things to know about this dataset
 ## ASL Citizen: 
 
 * Participant 46 often repeats signs
-* Do NOT try to parse the gloss name from the filename, use the splits. Some of them have "seedGLOSS" pattern, some of them have don't match the metadata 
+* Do NOT try to parse the gloss name from the filename, use the splits. Some of them have "seedGLOSS" pattern, some of them have don't match the metadata.
+* One example: 11562742429028061-REMEMBER.mp4 (no variant number) is listed in the test.csv as REMEMBER2 (variant 2?), with ASL-LEX Code C_02_014. BUT ASL-LEX "remember_2" is "H_03_038". Make of that what you will.
 * there is one file with a very strange name: 4.7299129501965353e-7-seedSOUR in the ASL Citizen train split
+
+
+
 
 
 ## ASL Knowledge Graph

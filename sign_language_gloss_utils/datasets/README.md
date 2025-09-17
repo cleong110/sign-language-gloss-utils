@@ -1,4 +1,4 @@
-<img width="73" height="17" alt="image" src="https://github.com/user-attachments/assets/46c7f4e2-5832-4e51-8c0c-6cd2ef889df1" /># Things to Know about Different Datasets
+# Things to Know about Different Datasets
 
 Many Sign language datasets have compatible vocabularies for example many are in some way aligned with the ASL LEX 2.0 vocabulary, but their gloss formatting are not consistent:
 * "asllex:#9_oclock" in the ASLKG versus "9_oclock" in Sem-Lex versus "9OCLOCK" in ASL Citizen

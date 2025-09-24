@@ -20,6 +20,7 @@ Things to know about this dataset
 * It has glosses with spaces (e.g. "last year")
 * It has glosses with commas in them ()
 * Some of the videos are poor quality and you cannot get the framerate reliably, example at https://github.com/sign-language-processing/pose/issues/127.
+* Some have leading or trailing spaces, e.g. '30_minute ' is in there, but so is '30_minute'
 
 
 ## ASL Citizen: 
